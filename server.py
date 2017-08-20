@@ -91,6 +91,8 @@ app = Flask(__name__)
 def route_index(story_id=None):
     file_name = "data.csv"
     if story_id:
+        if story_id > line_in_file(file_name):
+            return "The given ID does not exist"
         title = "Edit Story"
         action = "/story/" + str(story_id)
         value_list = get_table_from_file(file_name)
@@ -104,7 +106,7 @@ def route_index(story_id=None):
                                    estimation=float(value_list[story_id-1][5]),
                                    status=status_list)
         elif request.method == 'POST':
-            story_data = joining_data_from_submit(1 + line_in_file(file_name),
+            story_data = joining_data_from_submit(str(story_id),
                                                   ['story_title', 'user_story', 'acc_crit', 'b_value', 'estimation'],
                                                   'status')
             table = update_row_in_table(get_table_from_file(file_name), story_id, story_data)
