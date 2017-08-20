@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Super Sprinter 3000 </title>
+    </head>
+    <body>
+        <h1>User Story Manager</h1>
+        <button onclick="location.href='/story'" type="button" id="add_new_button">Add a new User Story</button>
+        <p><br>
+        <table border="5">
+            <tr>
+                <th>ID</th><th>Story title</th><th>User story</th><th>Acceptance criteria</th>
+                <th>Business Value</th><th>Estimation (h)</th><th>Status</th><th></th><th></th>
+            </tr>
+            {% for line in table %}
+            <tr>
+                <td>{{line[0]}}</td><td>{{line[1]}}</td><td>{{line[2]}}</td><td>{{line[3]}}</td>
+                <td>{{line[4]}}</td><td>{{line[5]}}</td><td>{{line[6]}}</td>
+                <td><a href='/story/{{line[0]}}'><img src="/static/images/pen.jpg" alt="Pen" style="width:40px;height:30px;"></a></td>
+                <td><a href='/list/{{line[0]}}'><img src="/static/images/bin.png" alt="Bin" style="width:40px;height:30px;"></a></td>
+            </tr>
+            {% endfor %}
+
+</table>
+
+    </body>
+</html>
